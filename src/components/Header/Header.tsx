@@ -14,18 +14,22 @@ import { BsCart2 } from 'react-icons/bs';
 function Header() {
 	return (
 		<Container fluid className={classes.container}>
-			<Row className={`${classes.row} d-flex align-items-center py-2 px-4`}>
+			<Row className={classes.row + ' d-flex align-items-center py-2 px-4'}>
 				<Col className="d-xxl-none" xs={2}>
 					<Menu />
 				</Col>
-				<Col className="d-flex justify-content-center " xs={7} xxl={2}>
+				<Col className="d-flex justify-content-md-center" xs={7} xxl={2}>
 					<LinkComponent to="/" className="logo" text="Shop-Logo" />
 				</Col>
 				<Col className="d-flex d-none d-xxl-flex" xxl={2}>
 					<LinkComponent to="/about" className="link" text="AboutUs" />
 					<LinkComponent to="/help" className="link" text="Help" />
 				</Col>
-				<Col xs={{ span: 12, order: 4 }} xxl={{ span: 6, order: 3 }}>
+				<Col
+					xs={{ span: 12, order: 4, offset: 0 }}
+					md={{ span: 8, order: 4, offset: 2 }}
+					xxl={{ span: 6, order: 3, offset: 0 }}
+				>
 					<Search
 						svgStyle="svgStyle"
 						inputStyle="inputStyle"
