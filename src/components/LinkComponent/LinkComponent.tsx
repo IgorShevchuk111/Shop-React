@@ -5,14 +5,21 @@ interface LinkComponentProps {
 	to: string;
 	text: string;
 	className: string;
+	key?: string;
+	handleClose?: () => void;
 }
-const LinkComponent = ({ to, text, className }: LinkComponentProps) => {
+const LinkComponent = ({
+	to,
+	text,
+	className,
+	handleClose,
+}: LinkComponentProps) => {
 	return (
-		<span>
-			<Link className={classes[className]} to={to}>
+		<>
+			<Link className={classes[className]} to={to} onClick={handleClose}>
 				{text}
 			</Link>
-		</span>
+		</>
 	);
 };
 
