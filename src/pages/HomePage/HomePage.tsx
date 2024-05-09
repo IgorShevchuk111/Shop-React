@@ -31,14 +31,14 @@ function HomePage() {
 				></img>
 			</section>
 			{/* Gallery smartphones */}
-			<section className="my-5">
-				<h5 className="text-center">Most wanted smartphones</h5>
-				<GalleryCarousel smartPhones={data.smartPhones} />
+			<section>
+				<h3 className="my-4 text-center">Most wanted smartphones</h3>
+				<GalleryCarousel models={Object.values(data.smartPhones)} />
 			</section>
 			{/* Gallery laptops */}
-			<section className="my-5">
-				<h5 className="text-center">Most popular laptops</h5>
-				<GalleryCarousel laptops={data.laptops} />
+			<section>
+				<h3 className="my-4 text-center">Most popular laptops</h3>
+				<GalleryCarousel models={Object.values(data.laptops)} />
 			</section>
 		</div>
 	);
