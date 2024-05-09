@@ -1,13 +1,13 @@
 import classes from './GalleryCarousel.module.scss';
 import '../../index.scss';
 import Slider from 'react-slick';
-import { GalleryCarouselProps, ArrowProps, Product } from '../../types';
+import { ArrowProps, GalleryCarouselProps } from '../../types';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import ProductCard from '../ProductCard/ProductCard';
 
-const GalleryCarousel = ({ smartPhones, laptops }: GalleryCarouselProps) => {
+const GalleryCarousel = ({ models }: GalleryCarouselProps) => {
 	const LeftArrow = ({ onClick, currentSlide }: ArrowProps) => (
 		<div
 			className={`
@@ -76,21 +76,11 @@ const GalleryCarousel = ({ smartPhones, laptops }: GalleryCarouselProps) => {
 	return (
 		<>
 			<Slider {...settings} className={`${classes['container-slider']} `}>
-				{smartPhones &&
-					smartPhones.map((smartPhoneModel: Product) => (
-						<div
-							key={smartPhoneModel.id}
-							className={`${classes['slick-slide']}`}
-						>
-							<ProductCard model={smartPhoneModel} items={'smartPhones'} />
-						</div>
-					))}
-				{laptops &&
-					laptops.map((laptopModel: Product) => (
-						<div key={laptopModel.id} className={`${classes['slick-slide']}`}>
-							<ProductCard model={laptopModel} items={'laptops'} />
-						</div>
-					))}
+				{models.map(model => (
+					<div key={model.id} className={`${classes['slick-slide']}`}>
+						<ProductCard model={model} />
+					</div>
+				))}
 			</Slider>
 		</>
 	);
