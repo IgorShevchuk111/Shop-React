@@ -1,23 +1,18 @@
 import { Link } from 'react-router-dom';
 import classes from './LinkComponent.module.scss';
+import { LinkComponentProps } from '../../types';
 
-interface LinkComponentProps {
-	to: string;
-	text: string;
-	className: string;
-	key?: string;
-	handleClose?: () => void;
-}
-const LinkComponent = ({
-	to,
-	text,
-	className,
-	handleClose,
-}: LinkComponentProps) => {
+const LinkComponent = ({ ...props }: LinkComponentProps) => {
 	return (
 		<>
-			<Link className={classes[className]} to={to} onClick={handleClose}>
-				{text}
+			<Link
+				className={classes[props.className]}
+				to={props.to}
+				onClick={() => {
+					props.handleClose && props.handleClose();
+				}}
+			>
+				{props.text}
 			</Link>
 		</>
 	);
