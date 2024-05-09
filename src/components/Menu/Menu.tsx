@@ -1,19 +1,18 @@
-import classes from './Menu.module.scss';
-
 import { useEffect, useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { CiMenuBurger } from 'react-icons/ci';
 import Nav from 'react-bootstrap/Nav';
 
+import classes from './Menu.module.scss';
 import { data } from '../../services/data';
 import LinkComponent from '../../components/LinkComponent/LinkComponent';
 
 function Menu() {
-	const [categories, setCtegories] = useState<string[]>([]);
-	const [show, setShow] = useState(false);
+	const [menu, setMenu] = useState<string[]>([]);
+	const [show, setShow] = useState<boolean>(false);
 
 	useEffect(() => {
-		setCtegories(Object.keys(data));
+		setMenu(Object.keys(data));
 	}, []);
 
 	const handleClose = () => setShow(false);
@@ -36,7 +35,7 @@ function Menu() {
 				</Offcanvas.Header>
 				<Offcanvas.Body className={classes['offcanvas-body']}>
 					<Nav className="flex-column">
-						{categories?.map(category => (
+						{menu?.map(category => (
 							<LinkComponent
 								key={category}
 								to={category}
