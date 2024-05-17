@@ -1,14 +1,17 @@
 import { FiCheck } from 'react-icons/fi';
 import './SidebarFilterItem.css';
+import { FilterData } from '../Sidebar';
 interface FilterItemProps {
 	label: string;
 	checked: boolean;
-	handleCheckboxChange: () => void;
+	category: keyof FilterData;
+	handleCheckboxChange: (label: string, category: keyof FilterData) => void;
 }
 
 function SidebarFilterItem({
 	label,
 	checked,
+	category,
 	handleCheckboxChange,
 }: FilterItemProps) {
 	return (
@@ -18,7 +21,9 @@ function SidebarFilterItem({
 					type="checkbox"
 					value={label}
 					checked={checked}
-					onChange={handleCheckboxChange}
+					onChange={() =>
+						handleCheckboxChange(label, category as keyof FilterData)
+					}
 				></input>
 				<span className="item-checkmark"></span>
 				<FiCheck className="item-checked" />
