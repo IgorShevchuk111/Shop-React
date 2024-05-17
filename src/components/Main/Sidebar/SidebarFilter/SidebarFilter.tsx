@@ -3,32 +3,33 @@ import './SidebarFilter.css';
 import SidebarFilterItem from '../SidebarFilterItem/SidebarFilterItem';
 import { FilterData } from '../Sidebar';
 interface FilterSectionProps {
-	title: string;
-	filteredItems: FilteredItems;
-	handleCheckboxChange: (item: string, type: keyof FilterData) => void;
-	type: keyof FilterData;
+	label: string;
+	items: FilteredItems;
+	handleCheckboxChange: (label: string, category: keyof FilterData) => void;
+	category: keyof FilterData;
 }
 interface FilteredItems {
 	[key: string]: boolean;
 }
 
 function SidebarFilter({
-	title,
-	filteredItems,
+	label,
+	items,
 	handleCheckboxChange,
-	type,
+	category,
 }: FilterSectionProps) {
 	return (
 		<div className="item-container">
-			<h6>{title}</h6>
-			<Search placeholder={`Search for ${title}`} />
+			<h6>{label}</h6>
+			<Search placeholder={`Search for ${label}`} />
 			<ul className="list-items">
-				{Object.entries(filteredItems).map(([item, checked]) => (
+				{Object.entries(items).map(([label, checked]) => (
 					<SidebarFilterItem
-						key={item}
-						label={item}
+						key={label}
+						label={label}
+						category={category}
 						checked={checked}
-						handleCheckboxChange={() => handleCheckboxChange(item, type)}
+						handleCheckboxChange={handleCheckboxChange}
 					/>
 				))}
 			</ul>
