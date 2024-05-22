@@ -1,36 +1,34 @@
+import { SidebarFilterProps } from '../../../../types';
 import Search from '../../../Shared/Search/Search';
 import './SidebarFilter.css';
-import SidebarFilterItem from '../SidebarFilterItem/SidebarFilterItem';
-import { FilterData } from '../Sidebar';
-interface FilterSectionProps {
-	label: string;
-	items: FilteredItems;
-	handleCheckboxChange: (label: string, category: keyof FilterData) => void;
-	category: keyof FilterData;
-}
-interface FilteredItems {
-	[key: string]: boolean;
-}
+
+import { FiCheck } from 'react-icons/fi';
 
 function SidebarFilter({
-	label,
+	title,
 	items,
+	filters,
 	handleCheckboxChange,
 	category,
-}: FilterSectionProps) {
+}: SidebarFilterProps) {
 	return (
 		<div className="item-container">
-			<h6>{label}</h6>
-			<Search placeholder={`Search for ${label}`} />
+			<h6>{title}</h6>
+			<Search placeholder={`Search for ${title}`} />
 			<ul className="list-items">
-				{Object.entries(items).map(([label, checked]) => (
-					<SidebarFilterItem
-						key={label}
-						label={label}
-						category={category}
-						checked={checked}
-						handleCheckboxChange={handleCheckboxChange}
-					/>
+				{items.map((value, index) => (
+					<li key={`${value}-${index}`}>
+						<label className="item-input mt-3">
+							<input
+								type="checkbox"
+								checked={filters[category].includes(value)}
+								onChange={() => handleCheckboxChange(value, category)}
+							/>
+							<span className="item-checkmark"></span>
+							<FiCheck className="item-checked" />
+							{value}
+						</label>
+					</li>
 				))}
 			</ul>
 		</div>

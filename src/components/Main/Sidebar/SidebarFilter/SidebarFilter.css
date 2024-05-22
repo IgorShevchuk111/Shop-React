@@ -32,6 +32,24 @@
 	max-height: 230px;
 	padding: 0;
 }
-.list-items div:last-child {
-	margin-bottom: 15px;
+.list-items li:last-child {
+	margin-bottom: 20px;
+}
+
+.item-input {
+	position: relative;
+	padding-left: 40px;
+}
+
+.item-checkmark {
+	width: 25px;
+	height: 25px;
+	border: 1px solid #ccc;
+	border-radius: 30%;
+	position: absolute;
+	left: 0;
+}
+
+.item-checked {
+	display: none;
 }
