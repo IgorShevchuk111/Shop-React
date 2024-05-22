@@ -1,0 +1,9 @@
+@import "../../styles/variables.scss";
+
+.header-row {
+    background: $light-color;
+}
+
+.header-container {
+    border-bottom: 1px solid $line-color;
+}

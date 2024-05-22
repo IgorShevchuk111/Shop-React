@@ -1,9 +1,9 @@
-import classes from './Header.module.scss';
-
-import Search from '../Search/Search';
-import IconLink from '../IconLink/IconLink';
-import LinkComponent from '../LinkComponent/LinkComponent';
-import Menu from '../Menu/Menu';
+// import classes from './Header.module.scss';
+import './Header.scss';
+import Search from '../Shared/Search/Search';
+import IconLink from '../Header/IconLink/IconLink';
+import LinkComponent from '../Header/LinkComponent/LinkComponent';
+import Menu from './Menu/Menu';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -13,8 +13,8 @@ import { BsCart2 } from 'react-icons/bs';
 
 function Header() {
 	return (
-		<Container fluid className={classes.container}>
-			<Row className={classes.row + ' d-flex align-items-center py-2 px-4'}>
+		<Container fluid className="header-container">
+			<Row className="header-row  d-flex align-items-center py-2 px-4">
 				<Col className="d-xxl-none" xs={2}>
 					<Menu />
 				</Col>
@@ -30,11 +30,7 @@ function Header() {
 					md={{ span: 8, order: 4, offset: 2 }}
 					xxl={{ span: 6, order: 3, offset: 0 }}
 				>
-					<Search
-						svgStyle="svgStyle"
-						inputStyle="inputStyle"
-						placeholder="What are you looking for?"
-					/>
+					<Search placeholder="What are you looking for?" />
 				</Col>
 				<Col
 					className="d-flex justify-content-end align-items-center"
