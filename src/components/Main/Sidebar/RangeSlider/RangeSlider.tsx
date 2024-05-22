@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import MultiRangeSlider from 'multi-range-slider-react';
 
-import './RangeSlider.css';
+import './RangeSlider.scss';
 
 interface MultiRangeSlider {
 	max: number;
