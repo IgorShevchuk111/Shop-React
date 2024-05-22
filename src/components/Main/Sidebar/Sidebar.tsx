@@ -1,72 +1,107 @@
+import { useMemo } from 'react';
 import RangeSlider from './RangeSlider/RangeSlider';
 import SidebarFilter from './SidebarFilter/SidebarFilter';
-import { getBrand, getModels, getColors, Data } from '../../../services/data';
+import { getProducts } from '../../../services/data';
+import { SidebarProps, Data } from '../../../types';
 
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+function Sidebar({ category, handleCheckboxChange, filters }: SidebarProps) {
+	const products = useMemo(
+		() => getProducts(category as keyof Data),
+		[category]
+	);
 
-export interface FilterData {
-	brands: { [key: string]: boolean };
-	models: { [key: string]: boolean };
-	colors: { [key: string]: boolean };
-}
-
-function Sidebar() {
-	const { category } = useParams<string>();
-
-	const [filterData, setFilterData] = useState<FilterData>({
-		brands: {},
-		models: {},
-		colors: {},
-	});
-
-	useEffect(() => {
-		if (category) {
-			const updateFilterItems = (
-				filterData: string[],
-				type: keyof FilterData
-			) => {
-				const updatedFilterItems = filterData.reduce(
-					(acc, item) => ({ ...acc, [item]: false }),
-					{ All: false }
-				);
-				setFilterData(prevState => ({
-					...prevState,
-					[type]: updatedFilterItems,
-				}));
-			};
-
-			updateFilterItems(getBrand(category as keyof Data), 'brands');
-			updateFilterItems(getModels(category as keyof Data), 'models');
-			updateFilterItems(getColors(category as keyof Data), 'colors');
+	const filteredBrands = useMemo(() => {
+		const allBrands = [...new Set(products.map(product => product.brand))];
+		if (filters.models.length === 0 && filters.colors.length === 0) {
+			return allBrands;
 		}
-	}, [category]);
+		return [
+			...new Set(
+				products
+					.filter(
+						product =>
+							(filters.models.length === 0 ||
+								filters.models.includes(product.model)) &&
+							(filters.colors.length === 0 ||
+								product.color.some((color: string) =>
+									filters.colors.includes(color)
+								))
+					)
+					.map(product => product.brand)
+			),
+		];
+	}, [products, filters.models, filters.colors]);
 
-	const handleCheckboxChange = (label: string, category: keyof FilterData) => {
-		setFilterData(prevData => ({
-			...prevData,
-			[category]: {
-				...prevData[category],
-				[label]: !prevData[category][label],
-			},
-		}));
-	};
+	const filteredModels = useMemo(() => {
+		const allModels = [...new Set(products.map(product => product.model))];
+		if (filters.brands.length === 0 && filters.colors.length === 0) {
+			return allModels;
+		}
+		return [
+			...new Set(
+				products
+					.filter(
+						product =>
+							(filters.brands.length === 0 ||
+								filters.brands.includes(product.brand)) &&
+							(filters.colors.length === 0 ||
+								product.color.some((color: string) =>
+									filters.colors.includes(color)
+								))
+					)
+					.map(product => product.model)
+			),
+		];
+	}, [products, filters.brands, filters.colors]);
+
+	const filteredColors = useMemo(() => {
+		const allColors = [
+			...new Set(products.flatMap(product => product.color).filter(Boolean)),
+		];
+		if (filters.brands.length === 0 && filters.models.length === 0) {
+			return allColors;
+		}
+		return [
+			...new Set(
+				products
+					.filter(
+						product =>
+							(filters.brands.length === 0 ||
+								filters.brands.includes(product.brand)) &&
+							(filters.models.length === 0 ||
+								filters.models.includes(product.model))
+					)
+					.flatMap(product => product.color)
+					.filter(Boolean)
+			),
+		];
+	}, [products, filters.brands, filters.models]);
 
 	return (
-		<>
-			<div>
-				<RangeSlider />
-				{Object.entries(filterData).map(([category, items]) => (
-					<SidebarFilter
-						key={category}
-						label={category.charAt(0).toUpperCase() + category.slice(1)}
-						items={items}
-						handleCheckboxChange={handleCheckboxChange}
-						category={category as keyof FilterData}
-					/>
-				))}
-			</div>
-		</>
+		<div className="w-100">
+			<RangeSlider />
+			<SidebarFilter
+				items={filteredBrands}
+				title="Brand"
+				category="brands"
+				filters={filters}
+				handleCheckboxChange={handleCheckboxChange}
+			/>
+			<SidebarFilter
+				items={filteredModels}
+				title="Model"
+				category="models"
+				filters={filters}
+				handleCheckboxChange={handleCheckboxChange}
+			/>
+			<SidebarFilter
+				items={filteredColors}
+				title="Color"
+				category="colors"
+				filters={filters}
+				handleCheckboxChange={handleCheckboxChange}
+			/>
+		</div>
 	);
 }
 
