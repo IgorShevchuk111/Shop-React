@@ -1,4 +1,6 @@
-const data = {
+import { Data } from "../types";
+
+export const data: Data = {
   laptops: {
     '215840': {
       brand: 'Apple',
@@ -143,10 +145,13 @@ const data = {
   }
 }
 
-const imageUrls = [
+export const imageUrls = [
   "https://images.ctfassets.net/mmeshd7gafk1/7KNLXyQymHYYkmyLiDbbwN/b4a2d7a9ddb37e38b45d11fd9a070f0a/TRADEIN_HP_GENERICBANNERS_DESKTOP_1_UK.jpg",
   "https://images.ctfassets.net/mmeshd7gafk1/1mklc1XS5bIPxK0yRUSWlC/38ddeaf73378f38400bfda50f76d3760/HP_Desktop.jpg",
   "https://images.ctfassets.net/mmeshd7gafk1/79rdnKQoRxpSz5XweedLXe/ae73600c79066d5667e32f16009dbf08/banner_hp_en-uk_desktop_2880_hdpi.png",
 ];
 
-export { data, imageUrls };
+export const getProducts = (category: keyof Data) => {
+  const productsData = data[category];
+  return Object.values(productsData);
+};
