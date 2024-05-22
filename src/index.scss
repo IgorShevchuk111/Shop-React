@@ -1,17 +1,12 @@
-$primary-color: #545454;
-$accent-color: #333333;
-$light-color: #ffffff;
-$font-family: Arial, sans-serif;
-$background-color: #F9F9F9;
-$line-color: #d7d7d7;
-$bg-primary: #F2F2F2;
+@import "../src/styles/variables.scss";
 
 html,
 body,
 #root {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: BodyFont, sans-serif;
+    font-weight: 300;
     box-sizing: border-box;
     color: $primary-color;
     background: $background-color;
@@ -21,6 +16,7 @@ a {
     text-decoration: none !important;
 
     &:hover {
+        color: $primary-color;
         opacity: 0.7;
     }
 }

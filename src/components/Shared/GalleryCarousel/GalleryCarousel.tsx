@@ -1,5 +1,4 @@
 import './GalleryCarousel.scss';
-import '../../../../src/index.scss';
 import Slider from 'react-slick';
 import { ArrowProps, GalleryCarouselProps } from '../../../types';
 import 'slick-carousel/slick/slick.css';
@@ -76,7 +75,7 @@ const GalleryCarousel = ({ models }: GalleryCarouselProps) => {
 			<Slider {...settings} className="container-slider">
 				{models.map(model => (
 					<div key={model.id} className="slick-slide">
-						<ProductCard model={model} />
+						<ProductCard item={model} />
 					</div>
 				))}
 			</Slider>
