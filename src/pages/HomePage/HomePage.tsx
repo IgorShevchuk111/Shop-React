@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
 import './HomePage.scss';
-import '../../index.scss';
 import { data } from '../../services/data';
 import GalleryCarousel from '../../components/Shared/GalleryCarousel/GalleryCarousel';
 import { imageUrls } from '../../services/data';
