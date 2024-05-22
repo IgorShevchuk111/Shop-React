@@ -1,8 +1,8 @@
-import classes from './Footer.module.scss';
+import './Footer.scss';
 
 function Footer() {
 	return (
-		<div className={classes['footer-container']}>
+		<div className="footer-container">
 			&copy; {new Date().getFullYear()} Online
 		</div>
 	);
