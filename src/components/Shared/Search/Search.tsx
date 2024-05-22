@@ -1,5 +1,5 @@
 import { CiSearch } from 'react-icons/ci';
-import classes from './Search.module.scss';
+import './Search.scss';
 
 interface SearchProps {
 	placeholder: string;
@@ -8,12 +8,8 @@ interface SearchProps {
 function Search({ placeholder }: SearchProps) {
 	return (
 		<div className="position-relative">
-			<input
-				className={classes.inputStyle}
-				type="text"
-				placeholder={placeholder}
-			/>
-			<CiSearch className={classes.svgStyle} />
+			<input className="inputStyle" type="text" placeholder={placeholder} />
+			<CiSearch className="svgStyle" />
 		</div>
 	);
 }
