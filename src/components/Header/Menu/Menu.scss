@@ -1,0 +1,17 @@
+@import "../../../styles/variables.scss";
+
+.menu-title {
+    color: $accent-color;
+}
+
+.menu-burger {
+    font-size: 26px;
+}
+
+.offcanvas {
+    max-width: 256px !important;
+}
+
+.offcanvas-body {
+    padding: 0 !important;
+}
