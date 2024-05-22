@@ -1,0 +1,30 @@
+.breadcrumbs {
+    padding: 20px 0;
+}
+
+.breadcrumbs>* {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.breadcrumbs .crumb::after {
+    content: '>';
+    margin-left: 10px;
+}
+
+.breadcrumbs .crumb:last-child::after {
+    display: none;
+}
+
+.breadcrumbs .crumb:last-child {
+    font-weight: 500;
+}
+
+.breadcrumbs .crumb a {
+    color: var(--primary-color);
+    font-size: 14px;
+}
+
+.breadcrumbs .crumb a:hover {
+    opacity: 0.7;
+}
