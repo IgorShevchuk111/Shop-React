@@ -1,4 +1,4 @@
-import { Data, getProducts } from '../../services/data';
+import { getProducts } from '../../services/data';
 import ServicePromotions from '../../components/Main/ServicePromotions/ServicePromotions';
 import UsedSmartphonesSection from '../../components/Main/UsedProductsSection/UsedProductsSection';
 import Products from '../../components/Main/Products/Products';
@@ -9,7 +9,7 @@ import './ProductPage.scss';
 import { useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
-import { FilterData } from '../../types';
+import { Data, FilterData } from '../../types';
 
 function ProductPage() {
 	const { category } = useParams<{ category: string }>();
