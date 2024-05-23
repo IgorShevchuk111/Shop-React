@@ -6,18 +6,24 @@ import Breadcrumb from '../../components/Shared/Breadcrumb/Breadcrumb';
 import Sidebar from '../../components/Main/Sidebar/Sidebar';
 import './ProductPage.scss';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
-import { Data, FilterData } from '../../types';
+import { AnyProduct, Data, FilterData } from '../../types';
 
 function ProductPage() {
 	const { category } = useParams<{ category: string }>();
+	const [products, setProducts] = useState<AnyProduct[]>([]);
 	const [filters, setFilters] = useState<FilterData>({
 		brands: [],
 		models: [],
 		colors: [],
 	});
+
+	useEffect(() => {
+		const products = getProducts(category as keyof Data);
+		setProducts(products);
+	}, [category]);
 
 	const handleCheckboxChange = (value: string, category: keyof FilterData) => {
 		setFilters(prevFilters => ({
@@ -29,27 +35,14 @@ function ProductPage() {
 	};
 
 	const filteredProducts = useMemo(() => {
-		const products = getProducts(category as keyof Data);
-		const noFiltersSelected =
-			filters.brands.length === 0 &&
-			filters.models.length === 0 &&
-			filters.colors.length === 0;
-
-		if (noFiltersSelected) {
-			return products;
-		}
-		return products.filter(product => {
-			const brandMatch =
-				filters.brands.length === 0 || filters.brands.includes(product.brand);
-			const modelMatch =
-				filters.models.length === 0 || filters.models.includes(product.model);
-			const colorMatch =
-				filters.colors.length === 0 ||
-				product.color.some((color: string) => filters.colors.includes(color));
-			return brandMatch && modelMatch && colorMatch;
-		});
-	}, [category, filters]);
-
+		const { brands, models, colors } = filters;
+		return products.filter(
+			({ brand, model, color }) =>
+				(!brands.length || brands.includes(brand)) &&
+				(!models.length || models.includes(model)) &&
+				(!colors.length || color.some((c: string) => colors.includes(c)))
+		);
+	}, [products, filters]);
 	return (
 		<Container className="product-page-container">
 			<Breadcrumb />
