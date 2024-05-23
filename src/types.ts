@@ -61,7 +61,6 @@ export interface Product {
     img: string;
     model: string;
     price: number;
-    size: string;
     storage: string;
 }
 export interface Laptop extends Product {
@@ -74,7 +73,7 @@ export interface Smartphone extends Product {
 export type AnyProduct = Laptop | Smartphone;
 
 export interface GalleryCarouselProps {
-    models: Smartphone[] | Laptop[];
+    models: AnyProduct[];
 }
 export interface ArrowProps {
     onClick?: () => void;
