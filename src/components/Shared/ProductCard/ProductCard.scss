@@ -1,0 +1,50 @@
+.card {
+    max-width: 260px;
+    max-height: 360px;
+    border-radius: 12px !important;
+    transition: box-shadow 0.3s;
+
+    &:hover {
+        box-shadow: 0 0 10px 5px #e0e0e0;
+    }
+
+    .img {
+        width: 140px !important;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .card-detail {
+
+        .label {
+            font-weight: 500;
+        }
+
+        .value {
+            margin-left: 1rem;
+        }
+    }
+
+    .stars {
+        display: flex;
+        align-items: center;
+
+        .star {
+            color: #ffcc00;
+            font-size: 14px !important;
+            margin-right: 0.25rem;
+        }
+
+        .value {
+            margin-left: 0.5rem;
+        }
+    }
+
+    span {
+        font-size: 14px;
+    }
+}
