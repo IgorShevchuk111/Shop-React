@@ -2,25 +2,20 @@ import { useState } from 'react';
 import MultiRangeSlider from 'multi-range-slider-react';
 
 import './RangeSlider.scss';
-
-interface MultiRangeSlider {
-	max: number;
-	maxValue: number;
-	min: number;
-	minValue: number;
-}
+import { MultiRangeSliderType } from '../../../../types';
 
 function RangeSlider() {
 	const [minValue, set_minValue] = useState<number>(25);
 	const [maxValue, set_maxValue] = useState<number>(75);
 
-	const handleInput = (e: MultiRangeSlider) => {
+	const handleInput = (e: MultiRangeSliderType) => {
 		set_minValue(e.minValue);
 		set_maxValue(e.maxValue);
 	};
 
 	return (
 		<>
+			<h6>Price</h6>
 			<MultiRangeSlider
 				min={0}
 				max={100}

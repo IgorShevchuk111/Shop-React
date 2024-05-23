@@ -87,3 +87,9 @@ export interface ProductCardProps {
 export interface ProductsProps {
     filteredProducts: AnyProduct[];
 }
+export interface MultiRangeSliderType {
+    max: number;
+    maxValue: number;
+    min: number;
+    minValue: number;
+}
