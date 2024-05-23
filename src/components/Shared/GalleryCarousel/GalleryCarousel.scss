@@ -1,5 +1,5 @@
 .container-slider {
-    max-width: 1100px;
+    max-width: 1092px;
     width: 100%;
     margin: 0 auto;
 }
@@ -16,36 +16,39 @@
 }
 
 .custom-right {
-    right: -25px;
+    right: -21px;
     top: 44%;
     position: absolute;
+    z-index: 1;
 }
 
 .custom-left {
-    left: -25px;
+    left: -1px;
+    // left: -20px;
     position: absolute;
     top: 44%;
+    z-index: 1;
 }
 
 .slick-slide {
     margin: 0 10px;
-    width: 255px !important;
+    width: 253px !important;
 }
 
 @media (max-width: 1150px) {
     .container-slider {
-        max-width: 825px;
+        max-width: 819px;
     }
 }
 
 @media (max-width: 900px) {
     .container-slider {
-        max-width: 550px;
+        max-width: 546px;
     }
 }
 
 @media (max-width: 600px) {
     .container-slider {
-        max-width: 275px;
+        max-width: 273px;
     }
 }

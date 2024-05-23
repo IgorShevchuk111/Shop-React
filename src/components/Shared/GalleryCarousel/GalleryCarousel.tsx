@@ -7,8 +7,8 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import ProductCard from '../ProductCard/ProductCard';
 
 const GalleryCarousel = ({ models }: GalleryCarouselProps) => {
-	const LeftArrow = ({ onClick, currentSlide }: ArrowProps) => {
-		const isDisabled = currentSlide === 0;
+	const LeftArrow = ({ onClick, currentSlide, slideCount }: ArrowProps) => {
+		const isDisabled = slideCount && currentSlide === slideCount - 1;
 		return (
 			<div
 				className={`custom-arrow custom-left ${isDisabled ? 'disabled' : ''}`}
@@ -18,8 +18,8 @@ const GalleryCarousel = ({ models }: GalleryCarouselProps) => {
 			</div>
 		);
 	};
-	const RightArrow = ({ onClick, currentSlide, slideCount }: ArrowProps) => {
-		const isDisabled = slideCount && currentSlide === slideCount - 1;
+	const RightArrow = ({ onClick, currentSlide }: ArrowProps) => {
+		const isDisabled = currentSlide === 0;
 		return (
 			<div
 				className={`custom-arrow custom-right ${isDisabled ? 'disabled' : ''}`}
@@ -35,8 +35,8 @@ const GalleryCarousel = ({ models }: GalleryCarouselProps) => {
 		speed: 500,
 		slidesToShow: 4,
 		slidesToScroll: 1,
-		prevArrow: <LeftArrow />,
-		nextArrow: <RightArrow />,
+		prevArrow: <RightArrow />,
+		nextArrow: <LeftArrow />,
 		responsive: [
 			{
 				breakpoint: 1150,
