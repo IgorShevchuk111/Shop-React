@@ -29,17 +29,17 @@ interface SmartPhoneData {
         storage: string;
     };
 }
+export interface FilterData {
+    brands: string[];
+    models: string[];
+    colors: string[];
+}
 export interface LinkComponentProps {
     to: string;
     text: string;
     className: string;
     key?: string;
     handleClose?: () => void;
-}
-export interface FilterData {
-    brands: string[];
-    models: string[];
-    colors: string[];
 }
 export interface SidebarProps {
     category: string | undefined;
@@ -53,7 +53,7 @@ export interface SidebarFilterProps {
     filters: FilterData;
     handleCheckboxChange: (value: string, category: keyof FilterData) => void;
 }
-export interface Laptop {
+export interface Product {
     brand: string;
     color: string[];
     description: string;
@@ -64,18 +64,15 @@ export interface Laptop {
     size: string;
     storage: string;
 }
-export interface Smartphone {
-    brand: string;
-    camera: string;
-    color: string[];
-    description: string;
-    id: number;
-    img: string;
-    model: string;
-    price: number;
-    screen: string;
-    storage: string;
+export interface Laptop extends Product {
+    size: string;
 }
+export interface Smartphone extends Product {
+    camera: string;
+    screen: string;
+}
+export type AnyProduct = Laptop | Smartphone;
+
 export interface GalleryCarouselProps {
     models: Smartphone[] | Laptop[];
 }
@@ -85,5 +82,8 @@ export interface ArrowProps {
     slideCount?: number;
 }
 export interface ProductCardProps {
-    item: Smartphone | Laptop;
+    item: AnyProduct;
+}
+export interface ProductsProps {
+    filteredProducts: AnyProduct[];
 }
