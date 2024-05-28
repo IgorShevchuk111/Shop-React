@@ -1,6 +1,6 @@
 import { BsPerson, BsCart2 } from 'react-icons/bs';
-import IconLink from '../../Header/IconLink/IconLink';
 import Col from 'react-bootstrap/Col';
+import IconLink from './IconLink/IconLink';
 
 function IconLinks() {
 	return (

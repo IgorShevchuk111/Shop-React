@@ -1,4 +1,4 @@
-import LinkComponent from '../../Header/LinkComponent/LinkComponent';
+import LinkComponent from './LinkComponent/LinkComponent';
 import Col from 'react-bootstrap/Col';
 
 function Logo() {
