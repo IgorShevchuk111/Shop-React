@@ -4,8 +4,8 @@ import { CiMenuBurger } from 'react-icons/ci';
 import Nav from 'react-bootstrap/Nav';
 
 import './Menu.scss';
-import { data } from '../../../services/data';
-import LinkComponent from '../LinkComponent/LinkComponent';
+import { data } from '../../../../services/data';
+import LinkComponent from '../../LinkComponent/LinkComponent';
 
 function Menu() {
 	const [menu, setMenu] = useState<string[]>([]);
