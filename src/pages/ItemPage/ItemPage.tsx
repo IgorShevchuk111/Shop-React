@@ -5,7 +5,7 @@ import { AnyProduct, Data } from '../../types';
 import './ItemPage.scss';
 import { Container, Row } from 'react-bootstrap';
 import ItemImg from './components/ItemImg/ItemImg';
-import ItemDetails from './components/ItemDetails/ItemDetails';
+import ItemDetails from './components/ItemDetails';
 
 function ItemPage() {
 	const [item, setItem] = useState<AnyProduct | null>(null);
