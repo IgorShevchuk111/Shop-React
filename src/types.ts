@@ -74,6 +74,7 @@ export type AnyProduct = Laptop | Smartphone;
 
 export interface GalleryCarouselProps {
     models: AnyProduct[];
+    category: string
 }
 export interface ArrowProps {
     onClick?: () => void;
@@ -82,6 +83,7 @@ export interface ArrowProps {
 }
 export interface ProductCardProps {
     item: AnyProduct;
+    category?: string;
 }
 export interface ProductsProps {
     filteredProducts: AnyProduct[];

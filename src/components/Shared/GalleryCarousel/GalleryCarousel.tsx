@@ -6,7 +6,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import ProductCard from '../ProductCard/ProductCard';
 
-const GalleryCarousel = ({ models }: GalleryCarouselProps) => {
+const GalleryCarousel = ({ models, category }: GalleryCarouselProps) => {
 	const LeftArrow = ({ onClick, currentSlide, slideCount }: ArrowProps) => {
 		const isDisabled = slideCount && currentSlide === slideCount - 1;
 		return (
@@ -75,7 +75,7 @@ const GalleryCarousel = ({ models }: GalleryCarouselProps) => {
 			<Slider {...settings} className="container-slider">
 				{models.map(model => (
 					<div key={model.id} className="slick-slide">
-						<ProductCard item={model} />
+						<ProductCard item={model} category={category} />
 					</div>
 				))}
 			</Slider>

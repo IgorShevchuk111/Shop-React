@@ -1,0 +1,12 @@
+@import "../../../styles/variables.scss";
+
+.addToBasket {
+    background: $accent-color;
+    border-radius: 5px;
+    color: $light-color;
+    padding: 12px 56px;
+
+    &:hover {
+        opacity: 0.7;
+    }
+}

@@ -31,12 +31,18 @@ function HomePage() {
 			{/* -------- Gallery smartphones --------*/}
 			<section>
 				<h3 className="my-4 text-center">Most wanted smartphones</h3>
-				<GalleryCarousel models={Object.values(data.smartPhones)} />
+				<GalleryCarousel
+					models={Object.values(data.smartPhones)}
+					category="smartPhones"
+				/>
 			</section>
 			{/* -------- Gallery laptops ---------*/}
 			<section>
 				<h3 className="my-4 text-center">Most popular laptops</h3>
-				<GalleryCarousel models={Object.values(data.laptops)} />
+				<GalleryCarousel
+					models={Object.values(data.laptops)}
+					category="laptops"
+				/>
 			</section>
 		</div>
 	);

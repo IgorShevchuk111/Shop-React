@@ -8,6 +8,7 @@ import LoginPage from './pages/LoginPage';
 import BasketPage from './pages/BasketPage';
 import ErrorPage from './pages/ErrorPage';
 import BasketLayout from './layouts/BasketLayout';
+import ItemPage from './pages/ItemPage/ItemPage';
 
 function App() {
 	return (
@@ -16,6 +17,7 @@ function App() {
 				<Route path="/" element={<MainLayout />}>
 					<Route index element={<HomePage />} />
 					<Route path="/:category" element={<ProductPage />} />
+					<Route path="/:productList/:id" element={<ItemPage />} />
 				</Route>
 				<Route path="/login" element={<AuthLayout />}>
 					<Route index element={<LoginPage />} />
