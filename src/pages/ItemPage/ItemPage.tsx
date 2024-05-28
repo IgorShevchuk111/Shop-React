@@ -4,7 +4,7 @@ import { getProducts } from '../../services/data';
 import { AnyProduct, Data } from '../../types';
 import './ItemPage.scss';
 import { Container, Row } from 'react-bootstrap';
-import ItemImg from './components/ItemImg/ItemImg';
+import ItemImg from './components/ItemImg';
 import ItemDetails from './components/ItemDetails';
 
 function ItemPage() {

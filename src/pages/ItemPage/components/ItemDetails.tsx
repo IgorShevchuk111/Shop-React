@@ -1,6 +1,6 @@
 import { Col } from 'react-bootstrap';
 import ReactBootstrapAccordion from './ReactBootstrapAccordion/ReactBootstrapAccordion';
-import ItemHeader from './ItemHeader/ItemHeader';
+import ItemHeader from './ItemHeader';
 import ItemActions from './ItemActions';
 import ItemInfo from './ItemInfo';
 
