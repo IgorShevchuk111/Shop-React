@@ -1,0 +1,27 @@
+.accordion {
+    --bs-border-width: 0;
+    --bs-accordion-active-bg: none;
+    margin: 30px 0;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+}
+
+.accordion-button {
+    color: var(--primary-color);
+    font-weight: 300;
+}
+
+.accordion-item {
+    border-bottom: 1px solid var(--line-color);
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.accordion-body {
+    font-weight: 300;
+}
