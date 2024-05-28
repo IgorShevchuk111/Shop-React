@@ -1,10 +1,10 @@
 import './GalleryCarousel.scss';
 import Slider from 'react-slick';
-import { ArrowProps, GalleryCarouselProps } from '../../../types';
+import { ArrowProps, GalleryCarouselProps } from '../../../../types';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import ProductCard from '../ProductCard/ProductCard';
+import ProductCard from '../../../../components/Shared/ProductCard/ProductCard';
 
 const GalleryCarousel = ({ models, category }: GalleryCarouselProps) => {
 	const LeftArrow = ({ onClick, currentSlide, slideCount }: ArrowProps) => {
