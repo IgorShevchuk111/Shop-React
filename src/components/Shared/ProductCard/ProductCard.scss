@@ -14,35 +14,6 @@
         display: block;
     }
 
-    .card-body {
-        padding: 1rem;
-    }
-
-    .card-detail {
-
-        .label {
-            font-weight: 500;
-        }
-
-        .value {
-            margin-left: 1rem;
-        }
-    }
-
-    .stars {
-        display: flex;
-        align-items: center;
-
-        .star {
-            color: #ffcc00;
-            font-size: 14px !important;
-            margin-right: 0.25rem;
-        }
-
-        .value {
-            margin-left: 0.5rem;
-        }
-    }
 
     span {
         font-size: 14px;
