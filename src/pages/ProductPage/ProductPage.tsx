@@ -37,7 +37,6 @@ function ProductPage() {
 	};
 
 	const handleInputChange = (value: string) => {
-		console.log(value, 'ev');
 		setQuery(value);
 	};
 
