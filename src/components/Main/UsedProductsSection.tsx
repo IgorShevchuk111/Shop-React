@@ -3,7 +3,7 @@ import SortByDropdown from '../Main/SortByDropdown/SortByDropdown';
 import { UsedSmartphonesSectionProps } from '../../types';
 
 const UsedSmartphonesSection = ({
-	handleSortBy,
+	handleSortByChange,
 }: UsedSmartphonesSectionProps) => {
 	return (
 		<Row className="m-5">
@@ -15,7 +15,7 @@ const UsedSmartphonesSection = ({
 				lg={3}
 				className="d-none d-xl-flex align-items-center justify-content-end"
 			>
-				<SortByDropdown handleSortBy={handleSortBy} />
+				<SortByDropdown handleSortByChange={handleSortByChange} />
 			</Col>
 		</Row>
 	);

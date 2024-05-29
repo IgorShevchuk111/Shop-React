@@ -8,8 +8,11 @@ import { Col } from 'react-bootstrap';
 function Sidebar({
 	category,
 	handleCheckboxChange,
-	filters,
+	selectedBrands,
+	selectedModels,
+	selectedColors,
 	handleInputChange,
+	handlePriceChange,
 }: SidebarProps) {
 	const products = useMemo(
 		() => getProducts(category as keyof Data),
@@ -18,7 +21,7 @@ function Sidebar({
 
 	const filteredBrands = useMemo(() => {
 		const allBrands = [...new Set(products.map(product => product.brand))];
-		if (filters.models.length === 0 && filters.colors.length === 0) {
+		if (selectedModels.length === 0 && selectedColors.length === 0) {
 			return allBrands;
 		}
 		return [
@@ -26,21 +29,21 @@ function Sidebar({
 				products
 					.filter(
 						product =>
-							(filters.models.length === 0 ||
-								filters.models.includes(product.model)) &&
-							(filters.colors.length === 0 ||
+							(selectedModels.length === 0 ||
+								selectedModels.includes(product.model)) &&
+							(selectedColors.length === 0 ||
 								product.color.some((color: string) =>
-									filters.colors.includes(color)
+									selectedColors.includes(color)
 								))
 					)
 					.map(product => product.brand)
 			),
 		];
-	}, [products, filters.models, filters.colors]);
+	}, [products, selectedModels, selectedColors]);
 
 	const filteredModels = useMemo(() => {
 		const allModels = [...new Set(products.map(product => product.model))];
-		if (filters.brands.length === 0 && filters.colors.length === 0) {
+		if (selectedBrands.length === 0 && selectedColors.length === 0) {
 			return allModels;
 		}
 		return [
@@ -48,23 +51,23 @@ function Sidebar({
 				products
 					.filter(
 						product =>
-							(filters.brands.length === 0 ||
-								filters.brands.includes(product.brand)) &&
-							(filters.colors.length === 0 ||
+							(selectedBrands.length === 0 ||
+								selectedBrands.includes(product.brand)) &&
+							(selectedColors.length === 0 ||
 								product.color.some((color: string) =>
-									filters.colors.includes(color)
+									selectedColors.includes(color)
 								))
 					)
 					.map(product => product.model)
 			),
 		];
-	}, [products, filters.brands, filters.colors]);
+	}, [products, selectedBrands, selectedColors]);
 
 	const filteredColors = useMemo(() => {
 		const allColors = [
 			...new Set(products.flatMap(product => product.color).filter(Boolean)),
 		];
-		if (filters.brands.length === 0 && filters.models.length === 0) {
+		if (selectedBrands.length === 0 && selectedModels.length === 0) {
 			return allColors;
 		}
 		return [
@@ -72,25 +75,25 @@ function Sidebar({
 				products
 					.filter(
 						product =>
-							(filters.brands.length === 0 ||
-								filters.brands.includes(product.brand)) &&
-							(filters.models.length === 0 ||
-								filters.models.includes(product.model))
+							(selectedBrands.length === 0 ||
+								selectedBrands.includes(product.brand)) &&
+							(selectedModels.length === 0 ||
+								selectedModels.includes(product.model))
 					)
 					.flatMap(product => product.color)
 					.filter(Boolean)
 			),
 		];
-	}, [products, filters.brands, filters.models]);
+	}, [products, selectedBrands, selectedModels]);
 
 	return (
 		<Col className="d-none d-xl-block " xl={3}>
-			<RangeSlider />
+			<RangeSlider category="itemPrice" handlePriceChange={handlePriceChange} />
 			<SidebarFilter
 				items={filteredBrands}
 				title="Brand"
 				category="brands"
-				filters={filters}
+				selectedItems={selectedBrands}
 				handleCheckboxChange={handleCheckboxChange}
 				handleInputChange={handleInputChange}
 			/>
@@ -98,7 +101,7 @@ function Sidebar({
 				items={filteredModels}
 				title="Model"
 				category="models"
-				filters={filters}
+				selectedItems={selectedModels}
 				handleCheckboxChange={handleCheckboxChange}
 				handleInputChange={handleInputChange}
 			/>
@@ -106,7 +109,7 @@ function Sidebar({
 				items={filteredColors}
 				title="Color"
 				category="colors"
-				filters={filters}
+				selectedItems={selectedColors}
 				handleCheckboxChange={handleCheckboxChange}
 				handleInputChange={handleInputChange}
 			/>

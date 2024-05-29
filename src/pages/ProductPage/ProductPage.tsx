@@ -9,7 +9,7 @@ import './ProductPage.scss';
 import { useState, useMemo, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Row } from 'react-bootstrap';
-import { AnyProduct, Data, FilterData } from '../../types';
+import { AnyProduct, Data } from '../../types';
 
 function ProductPage() {
 	const { category } = useParams<{ category: string }>();
@@ -17,32 +17,50 @@ function ProductPage() {
 	const [products, setProducts] = useState<AnyProduct[]>([]);
 	const [query, setQuery] = useState('');
 	const [sortBy, setSortBy] = useState('lowToHigh');
-
-	const [filters, setFilters] = useState<FilterData>({
-		brands: [],
-		models: [],
-		colors: [],
-	});
+	const [itemPrice, setItemPrice] = useState({ min: 0, max: 1000 });
+	const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
+	const [selectedModels, setSelectedModels] = useState<string[]>([]);
+	const [selectedColors, setSelectedColors] = useState<string[]>([]);
 
 	useEffect(() => {
 		const products = getProducts(category as keyof Data);
 		setProducts(products);
 	}, [category]);
 
-	const handleCheckboxChange = (value: string, category: keyof FilterData) => {
-		setFilters(prevFilters => ({
-			...prevFilters,
-			[category]: prevFilters[category].includes(value)
-				? prevFilters[category].filter(item => item !== value)
-				: [...prevFilters[category], value],
-		}));
+	const handleCheckboxChange = (
+		value: string,
+		category: 'brands' | 'models' | 'colors'
+	) => {
+		if (category === 'brands') {
+			setSelectedBrands(prev =>
+				prev.includes(value)
+					? prev.filter(item => item !== value)
+					: [...prev, value]
+			);
+		} else if (category === 'models') {
+			setSelectedModels(prev =>
+				prev.includes(value)
+					? prev.filter(item => item !== value)
+					: [...prev, value]
+			);
+		} else if (category === 'colors') {
+			setSelectedColors(prev =>
+				prev.includes(value)
+					? prev.filter(item => item !== value)
+					: [...prev, value]
+			);
+		}
+	};
+
+	const handlePriceChange = (minValue: number, maxValue: number) => {
+		setItemPrice({ min: minValue, max: maxValue });
 	};
 
 	const handleInputChange = (value: string) => {
 		setQuery(value);
 	};
 
-	const handleSortBy = (value: string) => {
+	const handleSortByChange = (value: string) => {
 		setSortBy(value);
 	};
 
@@ -56,34 +74,43 @@ function ProductPage() {
 	});
 
 	const filteredProducts = useMemo(() => {
-		const { brands, models, colors } = filters;
 		return sortedProducts.filter(
-			({ brand, model, color }) =>
-				(!brands.length || brands.includes(brand)) &&
-				(!models.length || models.includes(model)) &&
-				(!colors.length || color.some((c: string) => colors.includes(c))) &&
+			({ brand, model, color, price }) =>
+				(!selectedBrands.length || selectedBrands.includes(brand)) &&
+				(!selectedModels.length || selectedModels.includes(model)) &&
+				(!selectedColors.length ||
+					color.some(c => selectedColors.includes(c))) &&
 				(!query ||
 					brand.toLowerCase().includes(query.toLowerCase()) ||
 					model.toLowerCase().includes(query.toLowerCase()) ||
-					color.some((c: string) =>
-						c.toLowerCase().includes(query.toLowerCase())
-					))
+					color.some(c => c.toLowerCase().includes(query.toLowerCase()))) &&
+				price >= itemPrice.min &&
+				price <= itemPrice.max
 		);
-	}, [sortedProducts, filters, query]);
+	}, [
+		selectedBrands,
+		selectedModels,
+		selectedColors,
+		sortedProducts,
+		query,
+		itemPrice,
+	]);
 
 	return (
 		<Container className="product-page-container">
 			<Breadcrumb />
 			<ServicePromotions />
-			<UsedSmartphonesSection handleSortBy={handleSortBy} />
+			<UsedSmartphonesSection handleSortByChange={handleSortByChange} />
 			<Row>
 				<Sidebar
 					category={category}
 					handleCheckboxChange={handleCheckboxChange}
-					filters={filters}
+					selectedBrands={selectedBrands}
+					selectedModels={selectedModels}
+					selectedColors={selectedColors}
 					handleInputChange={handleInputChange}
+					handlePriceChange={handlePriceChange}
 				/>
-
 				<Products filteredProducts={filteredProducts} />
 			</Row>
 		</Container>

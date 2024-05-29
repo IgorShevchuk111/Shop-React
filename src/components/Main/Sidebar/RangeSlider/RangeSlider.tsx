@@ -2,15 +2,16 @@ import { useState } from 'react';
 import MultiRangeSlider from 'multi-range-slider-react';
 
 import './RangeSlider.scss';
-import { MultiRangeSliderType } from '../../../../types';
+import { MultiRangeSliderType, RangeSliderProps } from '../../../../types';
 
-function RangeSlider() {
-	const [minValue, set_minValue] = useState<number>(25);
-	const [maxValue, set_maxValue] = useState<number>(75);
+function RangeSlider({ handlePriceChange }: RangeSliderProps) {
+	const [minValue, set_minValue] = useState<number>(250);
+	const [maxValue, set_maxValue] = useState<number>(750);
 
 	const handleInput = (e: MultiRangeSliderType) => {
 		set_minValue(e.minValue);
 		set_maxValue(e.maxValue);
+		handlePriceChange(e.minValue, e.maxValue);
 	};
 
 	return (
@@ -18,14 +19,12 @@ function RangeSlider() {
 			<h6>Price</h6>
 			<MultiRangeSlider
 				min={0}
-				max={100}
+				max={1000}
 				step={5}
 				minValue={minValue}
 				maxValue={maxValue}
 				barInnerColor="rgb(19, 209, 187)"
-				onInput={e => {
-					handleInput(e);
-				}}
+				onChange={handleInput}
 				ruler={false}
 			/>
 			<div className="d-flex justify-content-between">

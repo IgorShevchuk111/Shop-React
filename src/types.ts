@@ -29,11 +29,6 @@ interface SmartPhoneData {
         storage: string;
     };
 }
-export interface FilterData {
-    brands: string[];
-    models: string[];
-    colors: string[];
-}
 export interface LinkComponentProps {
     to: string;
     text: string;
@@ -44,20 +39,43 @@ export interface LinkComponentProps {
 export interface SearchProps {
     placeholder: string;
     handleInputChange?: (value: string) => void;
+    title?: string;
 }
 export interface SidebarProps {
-    category: string | undefined;
-    handleCheckboxChange: (value: string, category: keyof FilterData) => void;
-    filters: FilterData;
+    category?: string;
+    handleCheckboxChange: (value: string, category: 'brands' | 'models' | 'colors') => void;
+    selectedBrands: string[];
+    selectedModels: string[];
+    selectedColors: string[];
     handleInputChange: (value: string) => void;
+    handlePriceChange: (minValue: number, maxValue: number) => void;
 }
 export interface SidebarFilterProps {
-    category: keyof FilterData;
-    items: string[];
-    title: string;
-    filters: FilterData;
-    handleCheckboxChange: (value: string, category: keyof FilterData) => void;
     handleInputChange?: (value: string) => void;
+    category: 'brands' | 'models' | 'colors';
+    title: string;
+    handleCheckboxChange: (value: string, category: 'brands' | 'models' | 'colors') => void;
+    selectedItems: string[];
+    items: string[];
+}
+
+export interface SidebarListItemsProps {
+    handleCheckboxChange: (
+        value: string,
+        category: 'brands' | 'models' | 'colors'
+    ) => void;
+    selectedItems: string[];
+    items: string[];
+    category: 'brands' | 'models' | 'colors'
+}
+export interface SidebarItemProps {
+    category: 'brands' | 'models' | 'colors';
+    selectedItems: string[];
+    handleCheckboxChange: (
+        value: string,
+        category: 'brands' | 'models' | 'colors'
+    ) => void;
+    value: string;
 }
 export interface Product {
     brand: string;
@@ -102,9 +120,15 @@ export interface MultiRangeSliderType {
 }
 
 export interface UsedSmartphonesSectionProps {
-    handleSortBy: (value: string) => void;
+    handleSortByChange: (value: string) => void;
 }
 
 export interface SortByDropdownProps {
-    handleSortBy: (value: string) => void;
+    handleSortByChange: (value: string) => void;
+}
+
+export interface RangeSliderProps {
+    handlePriceChange: (minValue: number, maxValue: number) => void;
+    category: 'itemPrice';
+
 }

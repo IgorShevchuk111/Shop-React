@@ -2,14 +2,14 @@ import { IoIosArrowDown } from 'react-icons/io';
 import './SortByDropdown.scss';
 import { SortByDropdownProps } from '../../../types';
 
-function SortByDropdown({ handleSortBy }: SortByDropdownProps) {
+function SortByDropdown({ handleSortByChange }: SortByDropdownProps) {
 	return (
 		<div className="sort-by-dropdown-container">
 			<label className="label" htmlFor="sort">
 				Sort by
 			</label>
 			<select
-				onChange={e => handleSortBy(e.target.value)}
+				onChange={e => handleSortByChange(e.target.value)}
 				id="sort"
 				className="select"
 			>
