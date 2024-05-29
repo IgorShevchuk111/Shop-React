@@ -13,7 +13,9 @@ import { AnyProduct, Data, FilterData } from '../../types';
 
 function ProductPage() {
 	const { category } = useParams<{ category: string }>();
+
 	const [products, setProducts] = useState<AnyProduct[]>([]);
+	const [query, setQuery] = useState('');
 	const [filters, setFilters] = useState<FilterData>({
 		brands: [],
 		models: [],
@@ -34,15 +36,26 @@ function ProductPage() {
 		}));
 	};
 
+	const handleInputChange = (value: string) => {
+		console.log(value, 'ev');
+		setQuery(value);
+	};
+
 	const filteredProducts = useMemo(() => {
 		const { brands, models, colors } = filters;
 		return products.filter(
 			({ brand, model, color }) =>
 				(!brands.length || brands.includes(brand)) &&
 				(!models.length || models.includes(model)) &&
-				(!colors.length || color.some((c: string) => colors.includes(c)))
+				(!colors.length || color.some((c: string) => colors.includes(c))) &&
+				(!query ||
+					brand.toLowerCase().includes(query.toLowerCase()) ||
+					model.toLowerCase().includes(query.toLowerCase()) ||
+					color.some((c: string) =>
+						c.toLowerCase().includes(query.toLowerCase())
+					))
 		);
-	}, [products, filters]);
+	}, [products, filters, query]);
 	return (
 		<Container className="product-page-container">
 			<Breadcrumb />
@@ -53,6 +66,7 @@ function ProductPage() {
 					category={category}
 					handleCheckboxChange={handleCheckboxChange}
 					filters={filters}
+					handleInputChange={handleInputChange}
 				/>
 
 				<Products filteredProducts={filteredProducts} />

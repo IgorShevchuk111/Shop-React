@@ -5,7 +5,12 @@ import { getProducts } from '../../../services/data';
 import { SidebarProps, Data } from '../../../types';
 import { Col } from 'react-bootstrap';
 
-function Sidebar({ category, handleCheckboxChange, filters }: SidebarProps) {
+function Sidebar({
+	category,
+	handleCheckboxChange,
+	filters,
+	handleInputChange,
+}: SidebarProps) {
 	const products = useMemo(
 		() => getProducts(category as keyof Data),
 		[category]
@@ -87,6 +92,7 @@ function Sidebar({ category, handleCheckboxChange, filters }: SidebarProps) {
 				category="brands"
 				filters={filters}
 				handleCheckboxChange={handleCheckboxChange}
+				handleInputChange={handleInputChange}
 			/>
 			<SidebarFilter
 				items={filteredModels}
@@ -94,6 +100,7 @@ function Sidebar({ category, handleCheckboxChange, filters }: SidebarProps) {
 				category="models"
 				filters={filters}
 				handleCheckboxChange={handleCheckboxChange}
+				handleInputChange={handleInputChange}
 			/>
 			<SidebarFilter
 				items={filteredColors}
@@ -101,6 +108,7 @@ function Sidebar({ category, handleCheckboxChange, filters }: SidebarProps) {
 				category="colors"
 				filters={filters}
 				handleCheckboxChange={handleCheckboxChange}
+				handleInputChange={handleInputChange}
 			/>
 		</Col>
 	);

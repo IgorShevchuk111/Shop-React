@@ -41,10 +41,15 @@ export interface LinkComponentProps {
     key?: string;
     handleClose?: () => void;
 }
+export interface SearchProps {
+    placeholder: string;
+    handleInputChange?: (value: string) => void;
+}
 export interface SidebarProps {
     category: string | undefined;
     handleCheckboxChange: (value: string, category: keyof FilterData) => void;
     filters: FilterData;
+    handleInputChange: (value: string) => void;
 }
 export interface SidebarFilterProps {
     category: keyof FilterData;
@@ -52,6 +57,7 @@ export interface SidebarFilterProps {
     title: string;
     filters: FilterData;
     handleCheckboxChange: (value: string, category: keyof FilterData) => void;
+    handleInputChange?: (value: string) => void;
 }
 export interface Product {
     brand: string;

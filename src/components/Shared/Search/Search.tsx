@@ -1,14 +1,18 @@
 import { CiSearch } from 'react-icons/ci';
 import './Search.scss';
+import { SearchProps } from '../../../types';
 
-interface SearchProps {
-	placeholder: string;
-}
-
-function Search({ placeholder }: SearchProps) {
+function Search({ placeholder, handleInputChange }: SearchProps) {
 	return (
 		<div className="position-relative">
-			<input className="inputStyle" type="text" placeholder={placeholder} />
+			<input
+				onChange={e => {
+					handleInputChange && handleInputChange(e.target.value);
+				}}
+				className="inputStyle"
+				type="text"
+				placeholder={placeholder}
+			/>
 			<CiSearch className="svgStyle" />
 		</div>
 	);

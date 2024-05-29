@@ -9,12 +9,16 @@ function SidebarFilter({
 	items,
 	filters,
 	handleCheckboxChange,
+	handleInputChange,
 	category,
 }: SidebarFilterProps) {
 	return (
 		<div className="item-container">
 			<h6>{title}</h6>
-			<Search placeholder={`Search for ${title}`} />
+			<Search
+				placeholder={`Search for ${title}`}
+				handleInputChange={handleInputChange}
+			/>
 			<ul className="list-items">
 				{items.map((value, index) => (
 					<li key={`${value}-${index}`}>
