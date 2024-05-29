@@ -1,7 +1,7 @@
 import { getProducts } from '../../services/data';
 import ServicePromotions from '../../components/Main/ServicePromotions/ServicePromotions';
-import UsedSmartphonesSection from '../../components/Main/UsedProductsSection/UsedProductsSection';
-import Products from '../../components/Main/Products/Products';
+import UsedSmartphonesSection from '../../components/Main/UsedProductsSection';
+import Products from '../../components/Main/Products';
 import Breadcrumb from '../../components/Shared/Breadcrumb/Breadcrumb';
 import Sidebar from '../../components/Main/Sidebar/Sidebar';
 import './ProductPage.scss';

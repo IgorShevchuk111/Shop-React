@@ -1,5 +1,5 @@
 import { Row, Col } from 'react-bootstrap';
-import SortByDropdown from '../SortByDropdown/SortByDropdown';
+import SortByDropdown from '../Main/SortByDropdown/SortByDropdown';
 
 const UsedSmartphonesSection = () => {
 	return (
