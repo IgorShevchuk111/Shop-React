@@ -16,6 +16,8 @@ function ProductPage() {
 
 	const [products, setProducts] = useState<AnyProduct[]>([]);
 	const [query, setQuery] = useState('');
+	const [sortBy, setSortBy] = useState('lowToHigh');
+
 	const [filters, setFilters] = useState<FilterData>({
 		brands: [],
 		models: [],
@@ -40,9 +42,22 @@ function ProductPage() {
 		setQuery(value);
 	};
 
+	const handleSortBy = (value: string) => {
+		setSortBy(value);
+	};
+
+	const sortedProducts = [...products].sort((a, b) => {
+		if (sortBy === 'lowToHigh') {
+			return a.price - b.price;
+		} else if (sortBy === 'highToLow') {
+			return b.price - a.price;
+		}
+		return 0;
+	});
+
 	const filteredProducts = useMemo(() => {
 		const { brands, models, colors } = filters;
-		return products.filter(
+		return sortedProducts.filter(
 			({ brand, model, color }) =>
 				(!brands.length || brands.includes(brand)) &&
 				(!models.length || models.includes(model)) &&
@@ -54,12 +69,13 @@ function ProductPage() {
 						c.toLowerCase().includes(query.toLowerCase())
 					))
 		);
-	}, [products, filters, query]);
+	}, [sortedProducts, filters, query]);
+
 	return (
 		<Container className="product-page-container">
 			<Breadcrumb />
 			<ServicePromotions />
-			<UsedSmartphonesSection />
+			<UsedSmartphonesSection handleSortBy={handleSortBy} />
 			<Row>
 				<Sidebar
 					category={category}

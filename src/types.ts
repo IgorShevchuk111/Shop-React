@@ -100,3 +100,11 @@ export interface MultiRangeSliderType {
     min: number;
     minValue: number;
 }
+
+export interface UsedSmartphonesSectionProps {
+    handleSortBy: (value: string) => void;
+}
+
+export interface SortByDropdownProps {
+    handleSortBy: (value: string) => void;
+}
