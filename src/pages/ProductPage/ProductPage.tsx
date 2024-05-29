@@ -8,7 +8,7 @@ import './ProductPage.scss';
 
 import { useState, useMemo, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import { AnyProduct, Data, FilterData } from '../../types';
 
 function ProductPage() {
@@ -49,16 +49,13 @@ function ProductPage() {
 			<ServicePromotions />
 			<UsedSmartphonesSection />
 			<Row>
-				<Col className="d-none d-xl-flex " xl={3}>
-					<Sidebar
-						category={category}
-						handleCheckboxChange={handleCheckboxChange}
-						filters={filters}
-					/>
-				</Col>
-				<Col>
-					<Products filteredProducts={filteredProducts} />
-				</Col>
+				<Sidebar
+					category={category}
+					handleCheckboxChange={handleCheckboxChange}
+					filters={filters}
+				/>
+
+				<Products filteredProducts={filteredProducts} />
 			</Row>
 		</Container>
 	);

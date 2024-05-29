@@ -3,6 +3,7 @@ import RangeSlider from './RangeSlider/RangeSlider';
 import SidebarFilter from './SidebarFilter/SidebarFilter';
 import { getProducts } from '../../../services/data';
 import { SidebarProps, Data } from '../../../types';
+import { Col } from 'react-bootstrap';
 
 function Sidebar({ category, handleCheckboxChange, filters }: SidebarProps) {
 	const products = useMemo(
@@ -78,7 +79,7 @@ function Sidebar({ category, handleCheckboxChange, filters }: SidebarProps) {
 	}, [products, filters.brands, filters.models]);
 
 	return (
-		<div className="w-100">
+		<Col className="d-none d-xl-block " xl={3}>
 			<RangeSlider />
 			<SidebarFilter
 				items={filteredBrands}
@@ -101,7 +102,7 @@ function Sidebar({ category, handleCheckboxChange, filters }: SidebarProps) {
 				filters={filters}
 				handleCheckboxChange={handleCheckboxChange}
 			/>
-		</div>
+		</Col>
 	);
 }
 
