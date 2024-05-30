@@ -24,3 +24,9 @@
     margin: 0 10px;
     width: 253px !important;
 }
+
+@media (max-width: 600px) {
+    .slick-slide {
+        margin: 0;
+    }
+}

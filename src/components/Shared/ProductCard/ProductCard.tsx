@@ -13,7 +13,6 @@ function ProductCard({ item, category }: ProductCardProps) {
 	const modelUrl = toUrlString(item.model);
 	return (
 		<Col
-			xs={{ span: 8, offset: 2 }}
 			sm={{ span: 6, offset: 0 }}
 			lg={4}
 			className={category && 'slick-slide'}

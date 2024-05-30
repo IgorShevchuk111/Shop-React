@@ -24,7 +24,6 @@
 
 .custom-left {
     left: -10px;
-    // left: -20px;
     position: absolute;
     top: 44%;
     z-index: 1;
@@ -45,6 +44,14 @@
 
 @media (max-width: 600px) {
     .container-slider {
-        max-width: 273px;
+        max-width: 253px;
+    }
+
+    .custom-right {
+        right: -19px;
+    }
+
+    .custom-left {
+        left: -20px;
     }
 }
