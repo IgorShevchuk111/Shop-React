@@ -6,7 +6,7 @@ interface ButtonProps {
 
 const Button: React.FC<ButtonProps> = ({ title }) => {
 	const addToBasket = () => {
-		const item = { quantity: 1 };
+		// const item = { quantity: 1 };
 	};
 
 	return (
