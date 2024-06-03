@@ -1,16 +1,14 @@
-import Search from '../../Shared/Search/Search';
+import { PropsWithChildren } from 'react';
 import Col from 'react-bootstrap/Col';
 
-function SearchWrapper() {
+export default function SearchWrapper({ children }: PropsWithChildren) {
 	return (
 		<Col
 			xs={{ span: 12, order: 4, offset: 0 }}
 			md={{ span: 8, order: 4, offset: 2 }}
 			xxl={{ span: 6, order: 3, offset: 0 }}
 		>
-			<Search placeholder="What are you looking for?" />
+			{children}
 		</Col>
 	);
 }
-
-export default SearchWrapper;

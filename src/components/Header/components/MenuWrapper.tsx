@@ -1,12 +1,10 @@
-import Menu from './Menu/Menu';
+import { PropsWithChildren } from 'react';
 import Col from 'react-bootstrap/Col';
 
-function MenuWrapper() {
+export default function MenuWrapper({ children }: PropsWithChildren) {
 	return (
 		<Col className="d-xxl-none" xs={2}>
-			<Menu />
+			{children}
 		</Col>
 	);
 }
-
-export default MenuWrapper;

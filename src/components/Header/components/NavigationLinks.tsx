@@ -1,13 +1,10 @@
-import LinkComponent from './LinkComponent/LinkComponent';
+import { PropsWithChildren } from 'react';
 import Col from 'react-bootstrap/Col';
 
-function NavigationLinks() {
+export default function NavigationLinks({ children }: PropsWithChildren) {
 	return (
 		<Col className="d-flex d-none d-xxl-flex" xxl={2}>
-			<LinkComponent to="/about" className="link" text="AboutUs" />
-			<LinkComponent to="/help" className="link" text="Help" />
+			{children}
 		</Col>
 	);
 }
-
-export default NavigationLinks;
