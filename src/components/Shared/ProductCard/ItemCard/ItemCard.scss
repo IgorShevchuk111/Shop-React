@@ -1,0 +1,46 @@
+.item-card {
+    max-width: 260px;
+    max-height: 360px;
+    border-radius: 12px !important;
+    transition: box-shadow 0.3s;
+    padding: 16px 0;
+    margin: 0 auto;
+
+    &.horizontal {
+        display: flex;
+        flex-direction: row;
+        max-width: none;
+        margin-bottom: 8px;
+
+        .img {
+            max-width: 181px !important;
+        }
+
+    }
+
+    &:hover {
+        box-shadow: 0 0 10px 5px #e0e0e0;
+    }
+
+    .img {
+        max-width: 140px !important;
+        margin: 0 auto;
+        display: block;
+    }
+
+
+    span {
+        font-size: 14px;
+    }
+}
+
+.slick-slide {
+    margin: 0 10px;
+    width: 253px !important;
+}
+
+@media (max-width: 600px) {
+    .slick-slide {
+        margin: 0;
+    }
+}

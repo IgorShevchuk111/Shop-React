@@ -1,0 +1,16 @@
+@import "../../../../../../styles/variables.scss";
+
+.remove-button {
+    margin-left: 12px;
+    border: 1px solid $warn-color;
+    background: $light-color;
+    color: $warn-color;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    padding: 6px 14px;
+}
+
+.remove-button:focus {
+    box-shadow: 0 0 0 2px $warn-color;
+    outline: none;
+}

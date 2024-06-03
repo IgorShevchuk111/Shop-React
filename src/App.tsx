@@ -5,7 +5,7 @@ import AuthLayout from './layouts/AuthLayout';
 import HomePage from './pages/HomePage/HomePage';
 import ProductPage from './pages/ProductPage/ProductPage';
 import LoginPage from './pages/LoginPage';
-import BasketPage from './pages/BasketPage';
+import BasketPage from './pages/BasketPage/BasketPage';
 import ErrorPage from './pages/ErrorPage';
 import BasketLayout from './layouts/BasketLayout';
 import ItemPage from './pages/ItemPage/ItemPage';

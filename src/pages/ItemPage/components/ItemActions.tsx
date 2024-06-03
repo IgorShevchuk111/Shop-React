@@ -1,11 +1,7 @@
-import Button from '../../../components/Shared/Button/Button';
-import ItemRating from './ItemRating/ItemRating';
+import React, { PropsWithChildren } from 'react';
 
-const ItemActions: React.FC = () => (
-	<div className="d-flex justify-content-between">
-		<ItemRating />
-		<Button title="Add to basket" />
-	</div>
+const ItemActions: React.FC<PropsWithChildren> = ({ children }) => (
+	<div className="d-flex justify-content-between">{children}</div>
 );
 
 export default ItemActions;

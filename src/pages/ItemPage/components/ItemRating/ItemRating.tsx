@@ -10,7 +10,7 @@ const ItemRating: React.FC = () => (
 		<IoIosStar className="star" />
 		<IoIosStar className="star" />
 		<IoIosStarHalf className="star" />
-		<span className="value">(2095)</span>
+		<span className="ms-2">(2095)</span>
 	</div>
 );
 

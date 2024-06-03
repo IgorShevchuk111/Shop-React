@@ -1,17 +1,20 @@
+import { AnyProduct, ButtonProps } from '../../../types';
 import './Button.scss';
+import useBasket from '../../../Contexts/useBasket';
 
-interface ButtonProps {
-	title: string;
-}
+const Button: React.FC<ButtonProps> = ({ title, item }) => {
+	const { setBasketItems } = useBasket();
 
-const Button: React.FC<ButtonProps> = ({ title }) => {
-	const addToBasket = () => {
-		// const item = { quantity: 1 };
+	const addToBasket = (item: AnyProduct) => {
+		setBasketItems(prev =>
+			prev.some(basketItem => basketItem.id === item.id)
+				? prev
+				: [...prev, { ...item, quantity: 1 }]
+		);
 	};
-
 	return (
 		<>
-			<button className="addToBasket hover" onClick={addToBasket}>
+			<button className="addToBasket hover" onClick={() => addToBasket(item)}>
 				{title}
 			</button>
 		</>

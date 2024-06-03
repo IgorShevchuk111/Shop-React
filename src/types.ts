@@ -86,6 +86,7 @@ export interface Product {
     model: string;
     price: number;
     storage: string;
+    quantity?: number;
 }
 export interface Laptop extends Product {
     size: string;
@@ -131,4 +132,18 @@ export interface RangeSliderProps {
     handlePriceChange: (minValue: number, maxValue: number) => void;
     category: 'itemPrice';
 
+}
+export interface ItemDetailsProps {
+    [item: string]: AnyProduct;
+}
+// ------- Contexts --------
+
+export interface ButtonProps {
+    title: string;
+    item: AnyProduct;
+}
+
+export interface ItemCardProps {
+    item: AnyProduct;
+    isHorizontal?: boolean;
 }
